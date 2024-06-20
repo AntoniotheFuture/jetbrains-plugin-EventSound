@@ -1,4 +1,4 @@
-package com.github.antoniothefuture.jetbrainsplugineventsound.toolWindow
+package com.github.antoniothefuture.jetbrains_plugin_eventsound.toolWindow
 
 import com.intellij.openapi.components.service
 import com.intellij.openapi.diagnostic.thisLogger
@@ -8,8 +8,8 @@ import com.intellij.openapi.wm.ToolWindowFactory
 import com.intellij.ui.components.JBLabel
 import com.intellij.ui.components.JBPanel
 import com.intellij.ui.content.ContentFactory
-import com.github.antoniothefuture.jetbrainsplugineventsound.MyBundle
-import com.github.antoniothefuture.jetbrainsplugineventsound.services.MyProjectService
+import com.github.antoniothefuture.jetbrains_plugin_eventsound.MyBundle
+import com.github.antoniothefuture.jetbrains_plugin_eventsound.services.MyProjectService
 import javax.swing.JButton
 
 

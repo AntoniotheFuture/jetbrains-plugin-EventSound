@@ -1,4 +1,4 @@
-package com.github.antoniothefuture.jetbrainsplugineventsound
+package com.github.antoniothefuture.jetbrains_plugin_eventsound
 
 import com.intellij.DynamicBundle
 import org.jetbrains.annotations.NonNls

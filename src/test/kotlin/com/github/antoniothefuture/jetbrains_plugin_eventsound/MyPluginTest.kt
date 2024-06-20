@@ -1,4 +1,4 @@
-package com.github.antoniothefuture.jetbrainsplugineventsound
+package com.github.antoniothefuture.jetbrains_plugin_eventsound
 
 import com.intellij.ide.highlighter.XmlFileType
 import com.intellij.openapi.components.service
@@ -6,7 +6,7 @@ import com.intellij.psi.xml.XmlFile
 import com.intellij.testFramework.TestDataPath
 import com.intellij.testFramework.fixtures.BasePlatformTestCase
 import com.intellij.util.PsiErrorElementUtil
-import com.github.antoniothefuture.jetbrainsplugineventsound.services.MyProjectService
+import com.github.antoniothefuture.jetbrains_plugin_eventsound.services.MyProjectService
 
 @TestDataPath("\$CONTENT_ROOT/src/test/testData")
 class MyPluginTest : BasePlatformTestCase() {

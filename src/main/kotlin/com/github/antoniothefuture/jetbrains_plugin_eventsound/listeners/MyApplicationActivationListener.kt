@@ -1,4 +1,4 @@
-package com.github.antoniothefuture.jetbrainsplugineventsound.listeners
+package com.github.antoniothefuture.jetbrains_plugin_eventsound.listeners
 
 import com.intellij.openapi.application.ApplicationActivationListener
 import com.intellij.openapi.diagnostic.thisLogger
