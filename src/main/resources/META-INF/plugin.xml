@@ -1,18 +1,168 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
-    <id>com.github.antoniothefuture.jetbrains_plugin_eventsound</id>
-    <name>jetbrains-plugin-EventSound</name>
-    <vendor>Antonio·Future</vendor>
+    <id>com.github.antoniothefuture.intellij_plugin_eventsound</id>
+    <name>EventSound</name>
+    <vendor>Antonio Liang</vendor>
 
     <depends>com.intellij.modules.platform</depends>
+
 
     <resource-bundle>messages.MyBundle</resource-bundle>
 
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow factoryClass="com.github.antoniothefuture.jetbrains_plugin_eventsound.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
+        <toolWindow factoryClass="com.github.antoniothefuture.intellij_plugin_eventsound.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
     </extensions>
 
     <applicationListeners>
-        <listener class="com.github.antoniothefuture.jetbrainsplugineventsound.listeners.MyApplicationActivationListener" topic="com.intellij.openapi.application.ApplicationActivationListener"/>
+        <!-- Build And Run Listeners-->
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESProblemsListener" topic="com.intellij.analysis.problemsView.ProblemsListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESEditorOptionsListener" topic="com.intellij.application.options.editor.EditorOptionsListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESReaderModeListener" topic="com.intellij.codeInsight.actions.ReaderModeListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESCodeVisionSettingsListener" topic="com.intellij.codeInsight.codeVision.settings.CodeVisionSettings$CodeVisionSettingsListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESCompletionContributorListener" topic="com.intellij.codeInsight.completion.CompletionContributorListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESCompletionPhaseListener" topic="com.intellij.codeInsight.completion.CompletionPhaseListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESDaemonListener" topic="com.intellij.codeInsight.daemon.DaemonCodeAnalyzer$DaemonListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESFileHighlightingSettingListener" topic="com.intellij.codeInsight.daemon.impl.analysis.FileHighlightingSettingListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESListener" topic="com.intellij.codeInsight.documentation.render.DocRenderItemManagerImpl$Listener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESEditorHintListener" topic="com.intellij.codeInsight.hint.EditorHintListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESExternalParameterInfoChangesProvider" topic="com.intellij.codeInsight.hint.ExternalParameterInfoChangesProvider"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESSettingsListener" topic="com.intellij.codeInsight.hints.InlayHintsSettings$SettingsListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESLookupManagerListener" topic="com.intellij.codeInsight.lookup.LookupManagerListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESTemplateManagerListener" topic="com.intellij.codeInsight.template.TemplateManagerListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESInspectListener" topic="com.intellij.codeInspection.ex.InspectListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESBatchUpdateListener" topic="com.intellij.configurationStore.BatchUpdateListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESIdePerformanceListener" topic="com.intellij.diagnostic.IdePerformanceListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESRunnablesListener" topic="com.intellij.diagnostic.RunnablesListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESDvcsBranchManagerListener" topic="com.intellij.dvcs.branch.DvcsBranchManager$DvcsBranchManagerListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESVcsRepositoryMappingListener" topic="com.intellij.dvcs.repo.VcsRepositoryMappingListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESExecutionListener" topic="com.intellij.execution.ExecutionListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESExecutionTargetListener" topic="com.intellij.execution.ExecutionTargetListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESRunManagerListener" topic="com.intellij.execution.RunManagerListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESRunDashboardListener" topic="com.intellij.execution.dashboard.RunDashboardListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESElevationSettingsListener" topic="com.intellij.execution.process.elevation.settings$ElevationSettings.Listener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESRWSlotsConfigurationListener" topic="com.intellij.execution.runToolbar.data.RWSlotsConfigurationListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESServiceEventListener" topic="com.intellij.execution.services.ServiceEventListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESSMTRunnerEventsListener" topic="com.intellij.execution.testframework.sm.runner.SMTRunnerEventsListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESRunContentWithExecutorListener" topic="com.intellij.execution.ui.RunContentWithExecutorListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESFacetManagerListener" topic="com.intellij.facet.FacetManagerListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESFeaturesRegistryListener" topic="com.intellij.featureStatistics.FeaturesRegistryListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESFindModelListener" topic="com.intellij.find.FindModelListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESAppLifecycleListener" topic="com.intellij.ide.AppLifecycleListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESFrameStateListener" topic="com.intellij.ide.FrameStateListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESPowerSaveModeListener" topic="com.intellij.ide.PowerSaveMode$Listener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESRecentProjectsChange" topic="com.intellij.ide.RecentProjectsManager$RecentProjectsChange"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESSaveAndSyncHandlerListener" topic="com.intellij.ide.SaveAndSyncHandlerListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESSETabSwitcherListener" topic="com.intellij.ide.actions.searcheverywhere.SETabSwitcherListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESSearchListener" topic="com.intellij.ide.actions.searcheverywhere.SearchListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESBookmarksListener" topic="com.intellij.ide.bookmark.BookmarksListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESbookmarksBookmarksListener" topic="com.intellij.ide.bookmarks.BookmarksListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESBatchFileChangeListener" topic="com.intellij.ide.file.BatchFileChangeListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESDataSharingSettingsChangeListener" topic="com.intellij.ide.gdpr.DataSharingSettingsChangeListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESLightEditServiceListener" topic="com.intellij.ide.lightEdit.LightEditServiceListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESDynamicPluginListener" topic="com.intellij.ide.plugins.DynamicPluginListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESPluginRepositoryAuthListener" topic="com.intellij.ide.plugins.auth.PluginRepositoryAuthListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESProjectViewListener" topic="com.intellij.ide.projectView.impl.ProjectViewListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESTrustedProjectsListener" topic="com.intellij.ide.trustedProjects.TrustedProjectsListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESLafManagerListener" topic="com.intellij.ide.ui.LafManagerListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESUISettingsListener" topic="com.intellij.ide.ui.UISettingsListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESVirtualFileAppearanceListener" topic="com.intellij.ide.ui.VirtualFileAppearanceListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESCustomActionsListener" topic="com.intellij.ide.ui.customization.CustomActionsListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESComponentHighlightingListener" topic="com.intellij.ide.ui.search.ComponentHighlightingListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESFileStructurePopupListener" topic="com.intellij.ide.util.FileStructurePopupListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESEventLogConfigOptionsListener" topic="com.intellij.internal.statistic.eventLog.EventLogConfigOptionsListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESExternalResourceListener" topic="com.intellij.javaee.ExternalResourceListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESEventListener" topic="com.intellij.notification.ActionCenter$EventListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESNotifications" topic="com.intellij.notification.Notifications"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESAnActionListener" topic="com.intellij.openapi.actionSystem.ex.AnActionListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESToolbarActionsUpdatedListener" topic="com.intellij.openapi.actionSystem.impl.segmentedActionBar.ToolbarActionsUpdatedListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESApplicationActivationListener" topic="com.intellij.openapi.application.ApplicationActivationListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESCommandListener" topic="com.intellij.openapi.command.CommandListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESLatencyListener" topic="com.intellij.openapi.editor.actionSystem.LatencyListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESEditorColorsListener" topic="com.intellij.openapi.editor.colors.EditorColorsListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESEditorColorsManagerListener" topic="com.intellij.openapi.editor.colors.impl.EditorColorsManagerListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESExternalSystemProjectNotificationAwareListener" topic="com.intellij.openapi.externalSystem.autoimport.ExternalSystemProjectNotificationAware$Listener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESProjectDataImportListener" topic="com.intellij.openapi.externalSystem.service.project.manage.ProjectDataImportListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESFileDocumentManagerListener" topic="com.intellij.openapi.fileEditor.FileDocumentManagerListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESBefore" topic="com.intellij.openapi.fileEditor.FileEditorManagerListener$Before"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESFileEditorManagerListener" topic="com.intellij.openapi.fileEditor.FileEditorManagerListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESFileOpenedSyncListener" topic="com.intellij.openapi.fileEditor.FileOpenedSyncListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESRecentPlacesListener" topic="com.intellij.openapi.fileEditor.impl.IdeDocumentHistoryImpl$RecentPlacesListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESFileTypeListener" topic="com.intellij.openapi.fileTypes.FileTypeListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESKeymapManagerListener" topic="com.intellij.openapi.keymap.KeymapManagerListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESKeymapListener" topic="com.intellij.openapi.keymap.impl.ui.KeymapListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESExternalUpdateRequest" topic="com.intellij.openapi.options.newEditor.ExternalUpdateRequest"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESProgressManagerListener" topic="com.intellij.openapi.progress.ProgressManagerListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESSuspenderListener" topic="com.intellij.openapi.progress.impl.ProgressSuspender$SuspenderListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESProgressWindowListener" topic="com.intellij.openapi.progress.util.ProgressWindow$Listener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESBaseProjectDirectoriesListener" topic="com.intellij.openapi.project.BaseProjectDirectoriesListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESDumbModeListener" topic="com.intellij.openapi.project.DumbService$DumbModeListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESModuleListener" topic="com.intellij.openapi.project.ModuleListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESProjectCloseListener" topic="com.intellij.openapi.project.ProjectCloseListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESProjectManagerListener" topic="com.intellij.openapi.project.ProjectManagerListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESProjectLifecycleListener" topic="com.intellij.openapi.project.impl.ProjectLifecycleListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESProjectJdkTableListener" topic="com.intellij.openapi.projectRoots.ProjectJdkTable$Listener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESAdditionalLibraryRootsListener" topic="com.intellij.openapi.roots.AdditionalLibraryRootsListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESModuleRootListener" topic="com.intellij.openapi.roots.ModuleRootListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESRegistryValueListener" topic="com.intellij.openapi.util.registry.RegistryValueListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESBranchChangeListener" topic="com.intellij.openapi.vcs.BranchChangeListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESBranchRenameListener" topic="com.intellij.openapi.vcs.BranchRenameListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESFileStatusListener" topic="com.intellij.openapi.vcs.FileStatusListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESPluginVcsMappingListener" topic="com.intellij.openapi.vcs.PluginVcsMappingListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESVcsMappingListener" topic="com.intellij.openapi.vcs.VcsMappingListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESChangeListAvailabilityListener" topic="com.intellij.openapi.vcs.changes.ChangeListAvailabilityListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESChangeListListener" topic="com.intellij.openapi.vcs.changes.ChangeListListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESChangesViewModifierListener" topic="com.intellij.openapi.vcs.changes.ChangesViewModifier$ChangesViewModifierListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESChangesViewWorkflowListener" topic="com.intellij.openapi.vcs.changes.ChangesViewWorkflowManager$ChangesViewWorkflowListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESLocalChangeListsLoadedListener" topic="com.intellij.openapi.vcs.changes.LocalChangeListsLoadedListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESVcsAnnotationRefresher" topic="com.intellij.openapi.vcs.changes.VcsAnnotationRefresher"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESVcsFreezingProcessListener" topic="com.intellij.openapi.vcs.changes.VcsFreezingProcess$Listener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESVcsManagedFilesHolderListener" topic="com.intellij.openapi.vcs.changes.VcsManagedFilesHolder$VcsManagedFilesHolderListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESCommittedChangesListener" topic="com.intellij.openapi.vcs.changes.committed.CommittedChangesListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESCommittedChangesReloadListener" topic="com.intellij.openapi.vcs.changes.committed.CommittedChangesTreeBrowser$CommittedChangesReloadListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESDetailedNotification" topic="com.intellij.openapi.vcs.changes.committed.VcsConfigurationChangeListener$DetailedNotification"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESNotification" topic="com.intellij.openapi.vcs.changes.committed.VcsConfigurationChangeListener$Notification"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESShelveChangesManagerListener" topic="com.intellij.openapi.vcs.changes.shelf.ShelveChangesManagerListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESChangesViewContentManagerListener" topic="com.intellij.openapi.vcs.changes.ui.ChangesViewContentManagerListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESVcsActivationListener" topic="com.intellij.openapi.vcs.ex.VcsActivationListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESLineStatusTrackerSettingListener" topic="com.intellij.openapi.vcs.impl.LineStatusTrackerSettingListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESVcsBaseContentProviderListener" topic="com.intellij.openapi.vcs.impl.VcsBaseContentProviderListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESUpdatedFilesListener" topic="com.intellij.openapi.vcs.update.UpdatedFilesListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESVirtualFileManagerListener" topic="com.intellij.openapi.vfs.VirtualFileManagerListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESEncodingManagerListener" topic="com.intellij.openapi.vfs.encoding.EncodingManagerListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESBulkFileListener" topic="com.intellij.openapi.vfs.newvfs.BulkFileListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESVirtualFilePointerListener" topic="com.intellij.openapi.vfs.pointers.VirtualFilePointerListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESStatusBarInfo" topic="com.intellij.openapi.wm.StatusBarInfo"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESToolWindowManagerListener" topic="com.intellij.openapi.wm.ex.ToolWindowManagerListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESTitleInfoProviderListener" topic="com.intellij.openapi.wm.impl.TitleInfoProvider$TitleInfoProviderListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESBalloonNotificationListener" topic="com.intellij.openapi.wm.impl.welcomeScreen.WelcomeBalloonLayoutImpl$BalloonNotificationListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESWelcomeScreenComponentListener" topic="com.intellij.openapi.wm.impl.welcomeScreen.WelcomeScreenComponentListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESCloneProjectListener" topic="com.intellij.openapi.wm.impl.welcomeScreen.cloneableProjects.CloneableProjectsService$CloneProjectListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESCourseDeletedListener" topic="com.intellij.openapi.wm.impl.welcomeScreen.learnIde.coursesInProgress.CourseDeletedListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESModuleAttachListener" topic="com.intellij.platform.ModuleAttachListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESProblemListener" topic="com.intellij.problems.ProblemListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESProfileChangeAdapter" topic="com.intellij.profile.ProfileChangeAdapter"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESPsiDocumentListener" topic="com.intellij.psi.PsiDocumentListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESCodeStyleManagerListener" topic="com.intellij.psi.codeStyle.CodeStyleManager$Listener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESCodeStyleSettingsListener" topic="com.intellij.psi.codeStyle.CodeStyleSettingsListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESAnyPsiChangeListener" topic="com.intellij.psi.impl.AnyPsiChangeListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESPsiDocumentTransactionListener" topic="com.intellij.psi.impl.PsiDocumentTransactionListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESIndexChangeListener" topic="com.intellij.psi.search.FileTypeIndex$IndexChangeListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESPsiModificationTrackerListener" topic="com.intellij.psi.util.PsiModificationTracker$Listener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESRefactoringEventListener" topic="com.intellij.refactoring.listeners.RefactoringEventListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESRemoteMappingsListener" topic="com.intellij.remote.RemoteMappingsListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESRemoteServerListener" topic="com.intellij.remoteServer.configuration.RemoteServerListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESServerConnectionListener" topic="com.intellij.remoteServer.runtime.ServerConnectionListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESSpellCheckerEngineListener" topic="com.intellij.spellchecker.engine.SpellCheckerEngineListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESProjectTaskListener" topic="com.intellij.task.ProjectTaskListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESDeferredIconListener" topic="com.intellij.ui.DeferredIconListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESToolWindowViewModelListener" topic="com.intellij.ui.viewModel.extraction.ToolWindowViewModelListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESCommitModeListener" topic="com.intellij.vcs.commit.CommitModeManager$CommitModeListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESCommitModeManagerSettingsListener" topic="com.intellij.vcs.commit.CommitModeManager$SettingsListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESProfileListener" topic="com.intellij.vcs.commit.message.CommitMessageInspectionProfile$ProfileListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESProjectLogListener" topic="com.intellij.vcs.log.impl.VcsProjectLog$ProjectLogListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESJpsProjectLoadedListener" topic="com.intellij.workspaceModel.ide.JpsProjectLoadedListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESXDebuggerManagerListener" topic="com.intellij.xdebugger.XDebuggerManagerListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESXDependentBreakpointListener" topic="com.intellij.xdebugger.impl.breakpoints.XDependentBreakpointListener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESBreadcrumbsInitListener" topic="com.intellij.xml.breadcrumbs.BreadcrumbsInitListener"/>
     </applicationListeners>
 </idea-plugin>

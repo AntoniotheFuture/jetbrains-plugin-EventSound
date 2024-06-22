@@ -11,6 +11,7 @@ plugins {
     alias(libs.plugins.changelog) // Gradle Changelog Plugin
     alias(libs.plugins.qodana) // Gradle Qodana Plugin
     alias(libs.plugins.kover) // Gradle Kover Plugin
+    groovy
 }
 
 group = properties("pluginGroup").get()
@@ -114,5 +115,92 @@ tasks {
         // Specify pre-release label to publish the plugin in a custom Release Channel automatically. Read more:
         // https://plugins.jetbrains.com/docs/intellij/deployment.html#specifying-a-release-channel
         channels = properties("pluginVersion").map { listOf(it.substringAfter('-', "").substringBefore('.').ifEmpty { "default" }) }
+    }
+}
+
+tasks.register<ProcessFileTask>("processFile") {
+    group = "custom"
+    description = "Processes a file and filters lines ending with 'Listener'"
+
+    val sourceFile = file("scripts/intellij-topics.txt")
+    val outputFile = file("scripts/listeners-code.txt")
+    val xmlFile = file("scripts/listeners.xml")
+    inputs.file(sourceFile)
+    outputs.file(outputFile)
+    outputs.file(xmlFile)
+
+    this.sourceFile = sourceFile
+    this.outputFile = outputFile
+    this.xmlFile = xmlFile
+}
+
+open class ProcessFileTask : DefaultTask() {
+    data class ClassPath(val path: String, val className: String, val duplicate: Boolean)
+    @InputFile
+    lateinit var sourceFile: File
+
+    @OutputFile
+    lateinit var outputFile: File
+
+    @OutputFile
+    lateinit var xmlFile: File
+
+    @TaskAction
+    fun process() {
+        if (!sourceFile.exists()) {
+            logger.lifecycle("Source file does not exist.")
+            return
+        }
+        var rootPath = "com.github.antoniothefuture.intellij_plugin_eventsound.listeners"
+        val classPaths = mutableListOf<ClassPath>()
+
+        var processedLines = sourceFile.readLines().filter { it.contains("com/intellij") }.map { line ->
+            var start = line.indexOf("com/intellij")
+            var subStr = line.substring(start)
+            subStr
+                .replace(".kt#", ":")
+                .replace(".java#", ":")
+                .replace("/", ".")
+                .trim()
+        }.toSet().sorted()
+        var classNames = mutableListOf<String>()
+        for (line in processedLines) {
+            var className = line.substringAfterLast(":")
+            var path = line.substringBefore(":")
+            var duplicate = false
+            if (!path.substringAfterLast(".").equals(className)) {
+                path += ".$className"
+            }
+            if (classNames.contains(className)) {
+                var subPath = path.substringBeforeLast(".").substringAfterLast(".")
+                className = subPath + className
+                duplicate = true
+            }
+            classNames.add(className)
+            var classPath = ClassPath(path, className, duplicate)
+            classPaths.add(classPath)
+        }
+
+        var imports = classPaths.map {
+            "import ${it.path}" + if (it.duplicate) " as ${it.className}" else ""
+        }
+        var listeners = classPaths.map {
+            "internal class ES${it.className.replace(".", "")}: ${it.className} {\n" +
+            "    \n" +
+            "}\n"
+        }
+        var xmls = classPaths.map {
+            "<listener class=\"$rootPath.ES${it.className.replace(".", "")}\" topic=\"${it.path}\"/>"
+        }
+
+        var lines = listOf<String>()
+        lines = lines.plus(imports)
+        lines = lines.plus(listeners)
+
+        outputFile.writeText(lines.joinToString(System.getProperty("line.separator")))
+        logger.lifecycle("File processing complete. Output written to ${outputFile.path}")
+
+        xmlFile.writeText(xmls.joinToString(System.getProperty("line.separator")))
+        logger.lifecycle("File processing complete. Output written to ${xmlFile.path}")
     }
 }
