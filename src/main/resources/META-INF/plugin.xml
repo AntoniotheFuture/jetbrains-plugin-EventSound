@@ -5,12 +5,20 @@
     <vendor>Antonio Liang</vendor>
 
     <depends>com.intellij.modules.platform</depends>
+    <depends>org.jetbrains.kotlin</depends>
 
 
     <resource-bundle>messages.MyBundle</resource-bundle>
 
     <extensions defaultExtensionNs="com.intellij">
+        <applicationService
+                serviceImplementation="com.github.antoniothefuture.intellij_plugin_eventsound.configurable.AppSettings"/>
         <toolWindow factoryClass="com.github.antoniothefuture.intellij_plugin_eventsound.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
+        <applicationConfigurable
+                parentId="tools"
+                instance="com.github.antoniothefuture.intellij_plugin_eventsound.configurable.AppSettingsConfigurable"
+                id="com.github.antoniothefuture.intellij_plugin_eventsound.AppSettingsConfigurable"
+                displayName="EventSound Settings"/>
     </extensions>
 
     <applicationListeners>
@@ -39,7 +47,7 @@
         <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESExecutionTargetListener" topic="com.intellij.execution.ExecutionTargetListener"/>
         <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESRunManagerListener" topic="com.intellij.execution.RunManagerListener"/>
         <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESRunDashboardListener" topic="com.intellij.execution.dashboard.RunDashboardListener"/>
-        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESElevationSettingsListener" topic="com.intellij.execution.process.elevation.settings$ElevationSettings.Listener"/>
+        <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESElevationSettingsListener" topic="com.intellij.execution.process.elevation.settings.ElevationSettings$Listener"/>
         <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESRWSlotsConfigurationListener" topic="com.intellij.execution.runToolbar.data.RWSlotsConfigurationListener"/>
         <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESServiceEventListener" topic="com.intellij.execution.services.ServiceEventListener"/>
         <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESSMTRunnerEventsListener" topic="com.intellij.execution.testframework.sm.runner.SMTRunnerEventsListener"/>
