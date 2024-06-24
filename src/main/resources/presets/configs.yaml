@@ -1,0 +1,16 @@
+enable: true
+events:
+  - eventType: "Execution:processTerminated"
+    soundFile: "process-terminated.wav"
+  - eventType: "Branch:branchHasChanged"
+    soundFile: "branch-has-changed.wav"
+notifications:
+  - regex: "Error running.*"
+    soundFile: "error-running.wav"
+  - regex: "Build completed successfully.*"
+    soundFile: "build-completed.wav"
+progresses:
+  - regex: "Committing.*"
+    soundFile: "commit-finished.wav"
+  - regex: "Inspect code.*"
+    soundFile: "inspect-code-finished.wav"
