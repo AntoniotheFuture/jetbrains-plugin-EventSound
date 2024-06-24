@@ -1,3 +1,4 @@
+<listeners>
 <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESProblemsListener" topic="com.intellij.analysis.problemsView.ProblemsListener"/>
 <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESEditorOptionsListener" topic="com.intellij.application.options.editor.EditorOptionsListener"/>
 <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESReaderModeListener" topic="com.intellij.codeInsight.actions.ReaderModeListener"/>
@@ -168,3 +169,4 @@
 <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESXBreakpointListener" topic="com.intellij.xdebugger.breakpoints.XBreakpointListener"/>
 <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESXDependentBreakpointListener" topic="com.intellij.xdebugger.impl.breakpoints.XDependentBreakpointListener"/>
 <listener class="com.github.antoniothefuture.intellij_plugin_eventsound.listeners.ESBreadcrumbsInitListener" topic="com.intellij.xml.breadcrumbs.BreadcrumbsInitListener"/>
+</listeners>
